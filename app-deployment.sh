@@ -14,9 +14,13 @@ fi
 
 echo
 echo "Namespace $NAMESPACE"
+echo "KUBE_TOKEN $KUBE_TOKEN"
+ echo "KUBERNETES_SERVICE_HOST $KUBERNETES_SERVICE_HOST"
+ echo "KUBERNETES_PORT_443_TCP_PORT $KUBERNETES_PORT_443_TCP_PORT"
+ echo "DOCKERHUB_USERNAME $DOCKERHUB_USERNAME"
 
 status_code=$(curl -sSk -H "Authorization: Bearer $KUBE_TOKEN" \
-    "https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/apps/v1beta2/namespaces/$NAMESPACE/deployments/bulletin-board-deployment" \
+    "https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/apps/v1/namespaces/$NAMESPACE/deployments/bulletin-board-deployment" \
     -X GET -o /dev/null -w "%{http_code}")
 
 if [ $status_code == 200 ]; then
@@ -28,10 +32,7 @@ if [ $status_code == 200 ]; then
 else
  echo
  echo "Creating deployment"
- echo "KUBE_TOKEN $KUBE_TOKEN"
- echo "KUBERNETES_SERVICE_HOST $KUBERNETES_SERVICE_HOST"
- echo "KUBERNETES_PORT_443_TCP_PORT $KUBERNETES_PORT_443_TCP_PORT"
- echo "DOCKERHUB_USERNAME $DOCKERHUB_USERNAME"
+ 
  echo "Creating deployment2"
  curl --fail -H 'Content-Type: application/json' -sSk -H "Authorization: Bearer $KUBE_TOKEN" \
     "https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/apps/v1/namespaces/$NAMESPACE/deployments" \

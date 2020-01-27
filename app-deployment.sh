@@ -33,7 +33,7 @@ else
  echo "KUBERNETES_PORT_443_TCP_PORT $KUBERNETES_PORT_443_TCP_PORT"
  echo "Creating deployment2"
  curl --fail -H 'Content-Type: application/json' -sSk -H "Authorization: Bearer $KUBE_TOKEN" \
-    "https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/apps/v1beta2/namespaces/$NAMESPACE/deployments" \
+    "https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/apps/v1/namespaces/$NAMESPACE/deployments" \
     -X POST -d @bulletin-board-deployment.json
 fi
 

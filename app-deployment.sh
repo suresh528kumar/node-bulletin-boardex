@@ -31,6 +31,7 @@ else
  echo "KUBE_TOKEN $KUBE_TOKEN"
  echo "KUBERNETES_SERVICE_HOST $KUBERNETES_SERVICE_HOST"
  echo "KUBERNETES_PORT_443_TCP_PORT $KUBERNETES_PORT_443_TCP_PORT"
+ echo "DOCKERHUB_USERNAME $DOCKERHUB_USERNAME"
  echo "Creating deployment2"
  curl --fail -H 'Content-Type: application/json' -sSk -H "Authorization: Bearer $KUBE_TOKEN" \
     "https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/apps/v1/namespaces/$NAMESPACE/deployments" \
